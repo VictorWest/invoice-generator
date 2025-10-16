@@ -1,6 +1,6 @@
 import Input from "./input"
 
-export default function LineItem(){
+export default function LineItem({ }){
     return(
         <div className="flex items-center gap-20 py-2 px-10">
             <div className="flex-1">
