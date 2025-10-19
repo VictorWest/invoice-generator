@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function Button({textColour, bgColour, title} : {textColour:string, bgColour:string, title:React.ReactNode}){
+export default function Button({textColour, bgColour, title, className} : {textColour?:string, bgColour:string, title:React.ReactNode, className?:string}){
     return(
-        <div style={{ color: textColour, background: bgColour }} className="px-5 py-2 rounded-md cursor-pointer hover:opacity-90">
+        <div style={{ color: textColour || "black", background: bgColour }} className={`px-5 py-2 rounded-md cursor-pointer hover:opacity-90 ${className}`}>
             {title}
         </div>
     )

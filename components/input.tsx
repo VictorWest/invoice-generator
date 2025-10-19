@@ -16,7 +16,7 @@ const Input = forwardRef<HTMLInputElement, CustomInputProps>(({type, label, plac
                 style={{ borderColor: inputIsInvalid ? "#FF2C2C" : "#a6a09b" }} 
                 ref={ref}
                 type={type || "text"}
-                className={`px-2 py-3 rounded-md outline-0 border w-full ${className}`} 
+                className={`px-2 py-3 bg-white rounded-md outline-0 border w-full ${className}`} 
                 placeholder={placeholder || "Type something"} 
                 {...props}
             />

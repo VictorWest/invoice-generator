@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
+import { InvoiceProvider } from "@/context/InvoiceContext";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -32,8 +33,10 @@ export default function RootLayout({
       <body
         className={`${poppins} antialiased`}
       >
-        <Header />
-        {children}
+        <InvoiceProvider>
+          <Header />
+          {children}
+        </InvoiceProvider>
       </body>
     </html>
   );

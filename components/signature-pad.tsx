@@ -31,7 +31,7 @@ export default function SignaturePad({ handleSetUrl }: ChildProps){
                 />
             </div>
             <div className="flex gap-2">
-                <div onClick={handleClear}><Button bgColour="#a6a09b" textColour="black" title="Clear" /></div>
+                <div onClick={handleClear}><Button bgColour="#e7e5e4" textColour="black" title="Clear" className="border border-stone-300" /></div>
                 <div onClick={handleSave}><Button bgColour="black" textColour="white" title={isSaved ? "Saved!" : "Save"} /></div>
             </div>
         </div>
