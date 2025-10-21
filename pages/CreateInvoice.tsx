@@ -389,7 +389,7 @@ export default function CreateInvoice({ id }:{ id:ParamValue }){
                     </div> */}
                 </div>
                 <div className="flex justify-end gap-5 items-center py-5 text-sm">
-                    <Button bgColour="#E8E9ED" title="Clear Invoice" className="border border-stone-300" />
+                    <Button bgColour="#E8E9ED" title="Save Changes" className="border border-stone-300" />
                     <Button bgColour="black" textColour="white" title="Preview Invoice" className="border border-stone-300" />
                 </div>                
             </div>
