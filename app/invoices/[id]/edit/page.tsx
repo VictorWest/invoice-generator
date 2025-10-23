@@ -1,14 +1,14 @@
-"use client"
 import CreateInvoice from "@/pages/CreateInvoice";
-import { redirect, useParams } from "next/navigation";
+import { homePageRoute } from "@/utils/routeMap";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-export default function Page(){
-    const router = useParams()
-    const id = router?.id;
+export default async function Page(){
+    const session = await getServerSession()
 
-    if (!id){
-        redirect("/invoice")
-    }
+    if (!session){
+        redirect(homePageRoute)
+    } 
 
-    return <CreateInvoice id={id} />
+    return <CreateInvoice />
 }

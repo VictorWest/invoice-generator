@@ -14,3 +14,43 @@ model User {
   email     String   @unique
   password  String
 }
+
+model Invoice {
+  id               Int           @id @default(autoincrement())
+  createdAt        DateTime      @default(now())
+  selectedCurrency String 
+  invoiceId        String        @unique
+  invoiceTitle     String
+  fromName         String
+  fromEmail        String
+  fromAddress      String
+  fromPhone        String
+  fromBusiness     String?
+  billToName       String
+  billToEmail      String
+  billToAddress    String
+  billToPhone      String
+  billToMobile     String?
+  billToFax        String?
+  invoiceNumber    String
+  date             String
+  terms            String
+  lineItems        Json[]
+  subtotal         Int
+  tax              Int
+  total            Int
+  balance          Int
+  signatureUrl     String
+}
+
+// model LineItems {
+//   id          Int       @id @default(autoincrement())
+//   index       Int
+//   description String
+//   rate        Int
+//   quantity    Int
+//   amount      Int
+//   tax         Boolean 
+//   invoice     Invoice? @relation(fields: [invoiceId], references: [invoiceId])
+//   invoiceId   String?
+// }

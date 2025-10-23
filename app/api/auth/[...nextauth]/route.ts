@@ -1,5 +1,4 @@
 import { PrismaClient } from '@/generated/prisma'
-import { withAccelerate } from '@prisma/extension-accelerate'
 import NextAuth from 'next-auth';
 import CredentialsProvider from "next-auth/providers/credentials";
 import { compare } from "bcrypt"
@@ -10,7 +9,7 @@ const prisma = new PrismaClient({
             url: process.env.DATABASE_URL
         }
     }
-}).$extends(withAccelerate())
+})
 
 const handler = NextAuth({
     session: {

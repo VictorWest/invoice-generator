@@ -20,12 +20,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.17.1
- * Query Engine version: 272a37d34178c2894197e17273bf937f25acdeac
+ * Prisma Client JS version: 6.18.0
+ * Query Engine version: 34b5a692b7bd79939a9a2c3ef97d816e749cda2f
  */
 Prisma.prismaVersion = {
-  client: "6.17.1",
-  engine: "272a37d34178c2894197e17273bf937f25acdeac"
+  client: "6.18.0",
+  engine: "34b5a692b7bd79939a9a2c3ef97d816e749cda2f"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -127,6 +127,34 @@ exports.Prisma.UserScalarFieldEnum = {
   password: 'password'
 };
 
+exports.Prisma.InvoiceScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  selectedCurrency: 'selectedCurrency',
+  invoiceId: 'invoiceId',
+  invoiceTitle: 'invoiceTitle',
+  fromName: 'fromName',
+  fromEmail: 'fromEmail',
+  fromAddress: 'fromAddress',
+  fromPhone: 'fromPhone',
+  fromBusiness: 'fromBusiness',
+  billToName: 'billToName',
+  billToEmail: 'billToEmail',
+  billToAddress: 'billToAddress',
+  billToPhone: 'billToPhone',
+  billToMobile: 'billToMobile',
+  billToFax: 'billToFax',
+  invoiceNumber: 'invoiceNumber',
+  date: 'date',
+  terms: 'terms',
+  lineItems: 'lineItems',
+  subtotal: 'subtotal',
+  tax: 'tax',
+  total: 'total',
+  balance: 'balance',
+  signatureUrl: 'signatureUrl'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -137,9 +165,15 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Invoice: 'Invoice'
 };
 
 /**

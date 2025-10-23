@@ -1,5 +1,4 @@
 import { PrismaClient } from "@/generated/prisma";
-import { withAccelerate } from "@prisma/extension-accelerate";
 import { hash } from "bcrypt";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -9,7 +8,7 @@ const prisma = new PrismaClient({
             url: process.env.DATABASE_URL
         }
     }
-}).$extends(withAccelerate())
+})
 
 export async function POST(request: NextRequest){
     const { email, password } = await request.json()
@@ -35,6 +34,7 @@ export async function POST(request: NextRequest){
                 { status: 400 }
             );
         }
+        console.log(error)
         return NextResponse.json(
             { message: "Something went wrong." },
             { status: 500 }

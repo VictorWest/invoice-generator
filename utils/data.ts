@@ -25,6 +25,7 @@ export interface DiscountData {
 
 export const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$/
 export const MOBILE_NUMBER_REGEX = /^(?:\+1\s?)?(?:\(?\d{3}\)?[\s.-]?)?\d{3}[\s.-]?\d{4}$/
+export const PASSWORD_REGEX = /^.{8,}$/
 
 export const currencies = [
   { name: "USD", symbol: "$" },

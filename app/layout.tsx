@@ -1,29 +1,24 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Poppins } from "next/font/google";
+import localFont from "next/font/local"
 import "./globals.css";
-import Header from "@/components/header";
-import { InvoiceProvider } from "@/context/InvoiceContext";
+import { Providers } from "@/components/providers";
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
-
-const poppins = Poppins({
-  weight: ["400"]
+const lato = localFont({
+  src: "../public/fonts/Lato-Regular.ttf",
+  variable: "--font-lato"
 })
+
+const recoleta = localFont({
+  src: "../public/fonts/Recoleta-Regular.woff2",
+  variable: "--font-recoleta",
+});
 
 export const metadata: Metadata = {
   title: "Invoice Generator",
-  description: "Invoice Generator",
+  description: "Generate professional invoices instantly",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -31,12 +26,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins} antialiased`}
+        className={`${lato.variable} ${recoleta.variable} antialiased`}
       >
-        <InvoiceProvider>
-          <Header />
-          {children}
-        </InvoiceProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

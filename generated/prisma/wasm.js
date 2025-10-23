@@ -35,12 +35,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.17.1
- * Query Engine version: 272a37d34178c2894197e17273bf937f25acdeac
+ * Prisma Client JS version: 6.18.0
+ * Query Engine version: 34b5a692b7bd79939a9a2c3ef97d816e749cda2f
  */
 Prisma.prismaVersion = {
-  client: "6.17.1",
-  engine: "272a37d34178c2894197e17273bf937f25acdeac"
+  client: "6.18.0",
+  engine: "34b5a692b7bd79939a9a2c3ef97d816e749cda2f"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -99,6 +99,34 @@ exports.Prisma.UserScalarFieldEnum = {
   password: 'password'
 };
 
+exports.Prisma.InvoiceScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  selectedCurrency: 'selectedCurrency',
+  invoiceId: 'invoiceId',
+  invoiceTitle: 'invoiceTitle',
+  fromName: 'fromName',
+  fromEmail: 'fromEmail',
+  fromAddress: 'fromAddress',
+  fromPhone: 'fromPhone',
+  fromBusiness: 'fromBusiness',
+  billToName: 'billToName',
+  billToEmail: 'billToEmail',
+  billToAddress: 'billToAddress',
+  billToPhone: 'billToPhone',
+  billToMobile: 'billToMobile',
+  billToFax: 'billToFax',
+  invoiceNumber: 'invoiceNumber',
+  date: 'date',
+  terms: 'terms',
+  lineItems: 'lineItems',
+  subtotal: 'subtotal',
+  tax: 'tax',
+  total: 'total',
+  balance: 'balance',
+  signatureUrl: 'signatureUrl'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -109,9 +137,15 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Invoice: 'Invoice'
 };
 /**
  * Create the Client
@@ -142,12 +176,12 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../.env"
   },
   "relativePath": "../../prisma",
-  "clientVersion": "6.17.1",
-  "engineVersion": "272a37d34178c2894197e17273bf937f25acdeac",
+  "clientVersion": "6.18.0",
+  "engineVersion": "34b5a692b7bd79939a9a2c3ef97d816e749cda2f",
   "datasourceNames": [
     "db"
   ],
@@ -161,13 +195,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "datasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\nmodel User {\n  id        Int      @id @default(autoincrement())\n  createdAt DateTime @default(now())\n  email     String   @unique\n  password  String\n}\n",
-  "inlineSchemaHash": "936dfca8403058c3ab4893723f1a667310f124141d6af5db28d64bf05a7f2d6e",
+  "inlineSchema": "datasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\nmodel User {\n  id        Int      @id @default(autoincrement())\n  createdAt DateTime @default(now())\n  email     String   @unique\n  password  String\n}\n\nmodel Invoice {\n  id               Int      @id @default(autoincrement())\n  createdAt        DateTime @default(now())\n  selectedCurrency String\n  invoiceId        String   @unique\n  invoiceTitle     String\n  fromName         String\n  fromEmail        String\n  fromAddress      String\n  fromPhone        String\n  fromBusiness     String?\n  billToName       String\n  billToEmail      String\n  billToAddress    String\n  billToPhone      String\n  billToMobile     String?\n  billToFax        String?\n  invoiceNumber    String\n  date             String\n  terms            String\n  lineItems        Json[]\n  subtotal         Int\n  tax              Int\n  total            Int\n  balance          Int\n  signatureUrl     String\n}\n\n// model LineItems {\n//   id          Int       @id @default(autoincrement())\n//   index       Int\n//   description String\n//   rate        Int\n//   quantity    Int\n//   amount      Int\n//   tax         Boolean \n//   invoice     Invoice? @relation(fields: [invoiceId], references: [invoiceId])\n//   invoiceId   String?\n// }\n",
+  "inlineSchemaHash": "daee8ba46336fbe64920cb633187c12fb1a878fa81efbfed445b77c8f0568394",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"Invoice\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"selectedCurrency\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"invoiceId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"invoiceTitle\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"fromName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"fromEmail\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"fromAddress\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"fromPhone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"fromBusiness\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"billToName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"billToEmail\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"billToAddress\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"billToPhone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"billToMobile\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"billToFax\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"invoiceNumber\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"date\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"terms\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"lineItems\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"subtotal\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"tax\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"total\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"balance\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"signatureUrl\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

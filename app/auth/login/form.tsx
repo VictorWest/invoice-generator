@@ -1,12 +1,12 @@
 "use client"
-import { FormEvent, useEffect, useState } from "react"
+import { FormEvent, useState } from "react"
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Link from "next/link";
 import Oval from "react-loading-icons/dist/esm/components/oval"
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import AuthInput from "@/components/auth-input";
-import { registerPageRoute } from "@/utils/routeMap";
+import { invoicePageRoute, registerPageRoute } from "@/utils/routeMap";
 
 export default function Form(){
     const router = useRouter();
@@ -31,7 +31,7 @@ export default function Form(){
                 })
 
                 if (response?.ok){
-                    router.push("/")
+                    router.push(invoicePageRoute)
                 } else if (response?.error == "CredentialsSignin"){
                     setError("Invalid email or password")
                 } else {
