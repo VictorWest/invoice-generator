@@ -23,6 +23,11 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  * 
  */
 export type Invoice = $Result.DefaultSelection<Prisma.$InvoicePayload>
+/**
+ * Model ImageUpload
+ * 
+ */
+export type ImageUpload = $Result.DefaultSelection<Prisma.$ImageUploadPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -161,6 +166,16 @@ export class PrismaClient<
     * ```
     */
   get invoice(): Prisma.InvoiceDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.imageUpload`: Exposes CRUD operations for the **ImageUpload** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ImageUploads
+    * const imageUploads = await prisma.imageUpload.findMany()
+    * ```
+    */
+  get imageUpload(): Prisma.ImageUploadDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -603,7 +618,8 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    Invoice: 'Invoice'
+    Invoice: 'Invoice',
+    ImageUpload: 'ImageUpload'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -622,7 +638,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "invoice"
+      modelProps: "user" | "invoice" | "imageUpload"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -774,6 +790,80 @@ export namespace Prisma {
           }
         }
       }
+      ImageUpload: {
+        payload: Prisma.$ImageUploadPayload<ExtArgs>
+        fields: Prisma.ImageUploadFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ImageUploadFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageUploadPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ImageUploadFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageUploadPayload>
+          }
+          findFirst: {
+            args: Prisma.ImageUploadFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageUploadPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ImageUploadFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageUploadPayload>
+          }
+          findMany: {
+            args: Prisma.ImageUploadFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageUploadPayload>[]
+          }
+          create: {
+            args: Prisma.ImageUploadCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageUploadPayload>
+          }
+          createMany: {
+            args: Prisma.ImageUploadCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ImageUploadCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageUploadPayload>[]
+          }
+          delete: {
+            args: Prisma.ImageUploadDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageUploadPayload>
+          }
+          update: {
+            args: Prisma.ImageUploadUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageUploadPayload>
+          }
+          deleteMany: {
+            args: Prisma.ImageUploadDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ImageUploadUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ImageUploadUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageUploadPayload>[]
+          }
+          upsert: {
+            args: Prisma.ImageUploadUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImageUploadPayload>
+          }
+          aggregate: {
+            args: Prisma.ImageUploadAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateImageUpload>
+          }
+          groupBy: {
+            args: Prisma.ImageUploadGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ImageUploadGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ImageUploadCountArgs<ExtArgs>
+            result: $Utils.Optional<ImageUploadCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -872,6 +962,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     user?: UserOmit
     invoice?: InvoiceOmit
+    imageUpload?: ImageUploadOmit
   }
 
   /* Types for Logging */
@@ -1982,24 +2073,24 @@ export namespace Prisma {
 
   export type InvoiceAvgAggregateOutputType = {
     id: number | null
-    subtotal: number | null
-    tax: number | null
-    total: number | null
-    balance: number | null
+    subtotal: Decimal | null
+    tax: Decimal | null
+    total: Decimal | null
+    balance: Decimal | null
   }
 
   export type InvoiceSumAggregateOutputType = {
     id: number | null
-    subtotal: number | null
-    tax: number | null
-    total: number | null
-    balance: number | null
+    subtotal: Decimal | null
+    tax: Decimal | null
+    total: Decimal | null
+    balance: Decimal | null
   }
 
   export type InvoiceMinAggregateOutputType = {
     id: number | null
     createdAt: Date | null
-    selectedCurrency: string | null
+    userEmail: string | null
     invoiceId: string | null
     invoiceTitle: string | null
     fromName: string | null
@@ -2016,17 +2107,18 @@ export namespace Prisma {
     invoiceNumber: string | null
     date: string | null
     terms: string | null
-    subtotal: number | null
-    tax: number | null
-    total: number | null
-    balance: number | null
+    subtotal: Decimal | null
+    tax: Decimal | null
+    total: Decimal | null
+    balance: Decimal | null
     signatureUrl: string | null
+    templateColour: string | null
   }
 
   export type InvoiceMaxAggregateOutputType = {
     id: number | null
     createdAt: Date | null
-    selectedCurrency: string | null
+    userEmail: string | null
     invoiceId: string | null
     invoiceTitle: string | null
     fromName: string | null
@@ -2043,16 +2135,18 @@ export namespace Prisma {
     invoiceNumber: string | null
     date: string | null
     terms: string | null
-    subtotal: number | null
-    tax: number | null
-    total: number | null
-    balance: number | null
+    subtotal: Decimal | null
+    tax: Decimal | null
+    total: Decimal | null
+    balance: Decimal | null
     signatureUrl: string | null
+    templateColour: string | null
   }
 
   export type InvoiceCountAggregateOutputType = {
     id: number
     createdAt: number
+    userEmail: number
     selectedCurrency: number
     invoiceId: number
     invoiceTitle: number
@@ -2071,11 +2165,14 @@ export namespace Prisma {
     date: number
     terms: number
     lineItems: number
+    taxData: number
+    discountData: number
     subtotal: number
     tax: number
     total: number
     balance: number
     signatureUrl: number
+    templateColour: number
     _all: number
   }
 
@@ -2099,7 +2196,7 @@ export namespace Prisma {
   export type InvoiceMinAggregateInputType = {
     id?: true
     createdAt?: true
-    selectedCurrency?: true
+    userEmail?: true
     invoiceId?: true
     invoiceTitle?: true
     fromName?: true
@@ -2121,12 +2218,13 @@ export namespace Prisma {
     total?: true
     balance?: true
     signatureUrl?: true
+    templateColour?: true
   }
 
   export type InvoiceMaxAggregateInputType = {
     id?: true
     createdAt?: true
-    selectedCurrency?: true
+    userEmail?: true
     invoiceId?: true
     invoiceTitle?: true
     fromName?: true
@@ -2148,11 +2246,13 @@ export namespace Prisma {
     total?: true
     balance?: true
     signatureUrl?: true
+    templateColour?: true
   }
 
   export type InvoiceCountAggregateInputType = {
     id?: true
     createdAt?: true
+    userEmail?: true
     selectedCurrency?: true
     invoiceId?: true
     invoiceTitle?: true
@@ -2171,11 +2271,14 @@ export namespace Prisma {
     date?: true
     terms?: true
     lineItems?: true
+    taxData?: true
+    discountData?: true
     subtotal?: true
     tax?: true
     total?: true
     balance?: true
     signatureUrl?: true
+    templateColour?: true
     _all?: true
   }
 
@@ -2268,7 +2371,8 @@ export namespace Prisma {
   export type InvoiceGroupByOutputType = {
     id: number
     createdAt: Date
-    selectedCurrency: string
+    userEmail: string
+    selectedCurrency: JsonValue
     invoiceId: string
     invoiceTitle: string
     fromName: string
@@ -2286,11 +2390,14 @@ export namespace Prisma {
     date: string
     terms: string
     lineItems: JsonValue[]
-    subtotal: number
-    tax: number
-    total: number
-    balance: number
+    taxData: JsonValue
+    discountData: JsonValue
+    subtotal: Decimal
+    tax: Decimal
+    total: Decimal
+    balance: Decimal
     signatureUrl: string
+    templateColour: string
     _count: InvoiceCountAggregateOutputType | null
     _avg: InvoiceAvgAggregateOutputType | null
     _sum: InvoiceSumAggregateOutputType | null
@@ -2315,6 +2422,7 @@ export namespace Prisma {
   export type InvoiceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     createdAt?: boolean
+    userEmail?: boolean
     selectedCurrency?: boolean
     invoiceId?: boolean
     invoiceTitle?: boolean
@@ -2333,16 +2441,20 @@ export namespace Prisma {
     date?: boolean
     terms?: boolean
     lineItems?: boolean
+    taxData?: boolean
+    discountData?: boolean
     subtotal?: boolean
     tax?: boolean
     total?: boolean
     balance?: boolean
     signatureUrl?: boolean
+    templateColour?: boolean
   }, ExtArgs["result"]["invoice"]>
 
   export type InvoiceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     createdAt?: boolean
+    userEmail?: boolean
     selectedCurrency?: boolean
     invoiceId?: boolean
     invoiceTitle?: boolean
@@ -2361,16 +2473,20 @@ export namespace Prisma {
     date?: boolean
     terms?: boolean
     lineItems?: boolean
+    taxData?: boolean
+    discountData?: boolean
     subtotal?: boolean
     tax?: boolean
     total?: boolean
     balance?: boolean
     signatureUrl?: boolean
+    templateColour?: boolean
   }, ExtArgs["result"]["invoice"]>
 
   export type InvoiceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     createdAt?: boolean
+    userEmail?: boolean
     selectedCurrency?: boolean
     invoiceId?: boolean
     invoiceTitle?: boolean
@@ -2389,16 +2505,20 @@ export namespace Prisma {
     date?: boolean
     terms?: boolean
     lineItems?: boolean
+    taxData?: boolean
+    discountData?: boolean
     subtotal?: boolean
     tax?: boolean
     total?: boolean
     balance?: boolean
     signatureUrl?: boolean
+    templateColour?: boolean
   }, ExtArgs["result"]["invoice"]>
 
   export type InvoiceSelectScalar = {
     id?: boolean
     createdAt?: boolean
+    userEmail?: boolean
     selectedCurrency?: boolean
     invoiceId?: boolean
     invoiceTitle?: boolean
@@ -2417,14 +2537,17 @@ export namespace Prisma {
     date?: boolean
     terms?: boolean
     lineItems?: boolean
+    taxData?: boolean
+    discountData?: boolean
     subtotal?: boolean
     tax?: boolean
     total?: boolean
     balance?: boolean
     signatureUrl?: boolean
+    templateColour?: boolean
   }
 
-  export type InvoiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "selectedCurrency" | "invoiceId" | "invoiceTitle" | "fromName" | "fromEmail" | "fromAddress" | "fromPhone" | "fromBusiness" | "billToName" | "billToEmail" | "billToAddress" | "billToPhone" | "billToMobile" | "billToFax" | "invoiceNumber" | "date" | "terms" | "lineItems" | "subtotal" | "tax" | "total" | "balance" | "signatureUrl", ExtArgs["result"]["invoice"]>
+  export type InvoiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "userEmail" | "selectedCurrency" | "invoiceId" | "invoiceTitle" | "fromName" | "fromEmail" | "fromAddress" | "fromPhone" | "fromBusiness" | "billToName" | "billToEmail" | "billToAddress" | "billToPhone" | "billToMobile" | "billToFax" | "invoiceNumber" | "date" | "terms" | "lineItems" | "taxData" | "discountData" | "subtotal" | "tax" | "total" | "balance" | "signatureUrl" | "templateColour", ExtArgs["result"]["invoice"]>
 
   export type $InvoicePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Invoice"
@@ -2432,7 +2555,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       createdAt: Date
-      selectedCurrency: string
+      userEmail: string
+      selectedCurrency: Prisma.JsonValue
       invoiceId: string
       invoiceTitle: string
       fromName: string
@@ -2450,11 +2574,14 @@ export namespace Prisma {
       date: string
       terms: string
       lineItems: Prisma.JsonValue[]
-      subtotal: number
-      tax: number
-      total: number
-      balance: number
+      taxData: Prisma.JsonValue
+      discountData: Prisma.JsonValue
+      subtotal: Prisma.Decimal
+      tax: Prisma.Decimal
+      total: Prisma.Decimal
+      balance: Prisma.Decimal
       signatureUrl: string
+      templateColour: string
     }, ExtArgs["result"]["invoice"]>
     composites: {}
   }
@@ -2880,7 +3007,8 @@ export namespace Prisma {
   interface InvoiceFieldRefs {
     readonly id: FieldRef<"Invoice", 'Int'>
     readonly createdAt: FieldRef<"Invoice", 'DateTime'>
-    readonly selectedCurrency: FieldRef<"Invoice", 'String'>
+    readonly userEmail: FieldRef<"Invoice", 'String'>
+    readonly selectedCurrency: FieldRef<"Invoice", 'Json'>
     readonly invoiceId: FieldRef<"Invoice", 'String'>
     readonly invoiceTitle: FieldRef<"Invoice", 'String'>
     readonly fromName: FieldRef<"Invoice", 'String'>
@@ -2898,11 +3026,14 @@ export namespace Prisma {
     readonly date: FieldRef<"Invoice", 'String'>
     readonly terms: FieldRef<"Invoice", 'String'>
     readonly lineItems: FieldRef<"Invoice", 'Json[]'>
-    readonly subtotal: FieldRef<"Invoice", 'Int'>
-    readonly tax: FieldRef<"Invoice", 'Int'>
-    readonly total: FieldRef<"Invoice", 'Int'>
-    readonly balance: FieldRef<"Invoice", 'Int'>
+    readonly taxData: FieldRef<"Invoice", 'Json'>
+    readonly discountData: FieldRef<"Invoice", 'Json'>
+    readonly subtotal: FieldRef<"Invoice", 'Decimal'>
+    readonly tax: FieldRef<"Invoice", 'Decimal'>
+    readonly total: FieldRef<"Invoice", 'Decimal'>
+    readonly balance: FieldRef<"Invoice", 'Decimal'>
     readonly signatureUrl: FieldRef<"Invoice", 'String'>
+    readonly templateColour: FieldRef<"Invoice", 'String'>
   }
     
 
@@ -3270,6 +3401,1048 @@ export namespace Prisma {
 
 
   /**
+   * Model ImageUpload
+   */
+
+  export type AggregateImageUpload = {
+    _count: ImageUploadCountAggregateOutputType | null
+    _avg: ImageUploadAvgAggregateOutputType | null
+    _sum: ImageUploadSumAggregateOutputType | null
+    _min: ImageUploadMinAggregateOutputType | null
+    _max: ImageUploadMaxAggregateOutputType | null
+  }
+
+  export type ImageUploadAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type ImageUploadSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type ImageUploadMinAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    userEmail: string | null
+    invoiceId: string | null
+    url: string | null
+    fileId: string | null
+  }
+
+  export type ImageUploadMaxAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    userEmail: string | null
+    invoiceId: string | null
+    url: string | null
+    fileId: string | null
+  }
+
+  export type ImageUploadCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    userEmail: number
+    invoiceId: number
+    url: number
+    fileId: number
+    _all: number
+  }
+
+
+  export type ImageUploadAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type ImageUploadSumAggregateInputType = {
+    id?: true
+  }
+
+  export type ImageUploadMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    userEmail?: true
+    invoiceId?: true
+    url?: true
+    fileId?: true
+  }
+
+  export type ImageUploadMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    userEmail?: true
+    invoiceId?: true
+    url?: true
+    fileId?: true
+  }
+
+  export type ImageUploadCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    userEmail?: true
+    invoiceId?: true
+    url?: true
+    fileId?: true
+    _all?: true
+  }
+
+  export type ImageUploadAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ImageUpload to aggregate.
+     */
+    where?: ImageUploadWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ImageUploads to fetch.
+     */
+    orderBy?: ImageUploadOrderByWithRelationInput | ImageUploadOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ImageUploadWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ImageUploads from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ImageUploads.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ImageUploads
+    **/
+    _count?: true | ImageUploadCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ImageUploadAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ImageUploadSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ImageUploadMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ImageUploadMaxAggregateInputType
+  }
+
+  export type GetImageUploadAggregateType<T extends ImageUploadAggregateArgs> = {
+        [P in keyof T & keyof AggregateImageUpload]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateImageUpload[P]>
+      : GetScalarType<T[P], AggregateImageUpload[P]>
+  }
+
+
+
+
+  export type ImageUploadGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ImageUploadWhereInput
+    orderBy?: ImageUploadOrderByWithAggregationInput | ImageUploadOrderByWithAggregationInput[]
+    by: ImageUploadScalarFieldEnum[] | ImageUploadScalarFieldEnum
+    having?: ImageUploadScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ImageUploadCountAggregateInputType | true
+    _avg?: ImageUploadAvgAggregateInputType
+    _sum?: ImageUploadSumAggregateInputType
+    _min?: ImageUploadMinAggregateInputType
+    _max?: ImageUploadMaxAggregateInputType
+  }
+
+  export type ImageUploadGroupByOutputType = {
+    id: number
+    createdAt: Date
+    userEmail: string
+    invoiceId: string
+    url: string
+    fileId: string
+    _count: ImageUploadCountAggregateOutputType | null
+    _avg: ImageUploadAvgAggregateOutputType | null
+    _sum: ImageUploadSumAggregateOutputType | null
+    _min: ImageUploadMinAggregateOutputType | null
+    _max: ImageUploadMaxAggregateOutputType | null
+  }
+
+  type GetImageUploadGroupByPayload<T extends ImageUploadGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ImageUploadGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ImageUploadGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ImageUploadGroupByOutputType[P]>
+            : GetScalarType<T[P], ImageUploadGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ImageUploadSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    userEmail?: boolean
+    invoiceId?: boolean
+    url?: boolean
+    fileId?: boolean
+  }, ExtArgs["result"]["imageUpload"]>
+
+  export type ImageUploadSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    userEmail?: boolean
+    invoiceId?: boolean
+    url?: boolean
+    fileId?: boolean
+  }, ExtArgs["result"]["imageUpload"]>
+
+  export type ImageUploadSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    userEmail?: boolean
+    invoiceId?: boolean
+    url?: boolean
+    fileId?: boolean
+  }, ExtArgs["result"]["imageUpload"]>
+
+  export type ImageUploadSelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    userEmail?: boolean
+    invoiceId?: boolean
+    url?: boolean
+    fileId?: boolean
+  }
+
+  export type ImageUploadOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "userEmail" | "invoiceId" | "url" | "fileId", ExtArgs["result"]["imageUpload"]>
+
+  export type $ImageUploadPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ImageUpload"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      createdAt: Date
+      userEmail: string
+      invoiceId: string
+      url: string
+      fileId: string
+    }, ExtArgs["result"]["imageUpload"]>
+    composites: {}
+  }
+
+  type ImageUploadGetPayload<S extends boolean | null | undefined | ImageUploadDefaultArgs> = $Result.GetResult<Prisma.$ImageUploadPayload, S>
+
+  type ImageUploadCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ImageUploadFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ImageUploadCountAggregateInputType | true
+    }
+
+  export interface ImageUploadDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ImageUpload'], meta: { name: 'ImageUpload' } }
+    /**
+     * Find zero or one ImageUpload that matches the filter.
+     * @param {ImageUploadFindUniqueArgs} args - Arguments to find a ImageUpload
+     * @example
+     * // Get one ImageUpload
+     * const imageUpload = await prisma.imageUpload.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ImageUploadFindUniqueArgs>(args: SelectSubset<T, ImageUploadFindUniqueArgs<ExtArgs>>): Prisma__ImageUploadClient<$Result.GetResult<Prisma.$ImageUploadPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ImageUpload that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ImageUploadFindUniqueOrThrowArgs} args - Arguments to find a ImageUpload
+     * @example
+     * // Get one ImageUpload
+     * const imageUpload = await prisma.imageUpload.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ImageUploadFindUniqueOrThrowArgs>(args: SelectSubset<T, ImageUploadFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ImageUploadClient<$Result.GetResult<Prisma.$ImageUploadPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ImageUpload that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ImageUploadFindFirstArgs} args - Arguments to find a ImageUpload
+     * @example
+     * // Get one ImageUpload
+     * const imageUpload = await prisma.imageUpload.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ImageUploadFindFirstArgs>(args?: SelectSubset<T, ImageUploadFindFirstArgs<ExtArgs>>): Prisma__ImageUploadClient<$Result.GetResult<Prisma.$ImageUploadPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ImageUpload that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ImageUploadFindFirstOrThrowArgs} args - Arguments to find a ImageUpload
+     * @example
+     * // Get one ImageUpload
+     * const imageUpload = await prisma.imageUpload.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ImageUploadFindFirstOrThrowArgs>(args?: SelectSubset<T, ImageUploadFindFirstOrThrowArgs<ExtArgs>>): Prisma__ImageUploadClient<$Result.GetResult<Prisma.$ImageUploadPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ImageUploads that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ImageUploadFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ImageUploads
+     * const imageUploads = await prisma.imageUpload.findMany()
+     * 
+     * // Get first 10 ImageUploads
+     * const imageUploads = await prisma.imageUpload.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const imageUploadWithIdOnly = await prisma.imageUpload.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ImageUploadFindManyArgs>(args?: SelectSubset<T, ImageUploadFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImageUploadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ImageUpload.
+     * @param {ImageUploadCreateArgs} args - Arguments to create a ImageUpload.
+     * @example
+     * // Create one ImageUpload
+     * const ImageUpload = await prisma.imageUpload.create({
+     *   data: {
+     *     // ... data to create a ImageUpload
+     *   }
+     * })
+     * 
+     */
+    create<T extends ImageUploadCreateArgs>(args: SelectSubset<T, ImageUploadCreateArgs<ExtArgs>>): Prisma__ImageUploadClient<$Result.GetResult<Prisma.$ImageUploadPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ImageUploads.
+     * @param {ImageUploadCreateManyArgs} args - Arguments to create many ImageUploads.
+     * @example
+     * // Create many ImageUploads
+     * const imageUpload = await prisma.imageUpload.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ImageUploadCreateManyArgs>(args?: SelectSubset<T, ImageUploadCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ImageUploads and returns the data saved in the database.
+     * @param {ImageUploadCreateManyAndReturnArgs} args - Arguments to create many ImageUploads.
+     * @example
+     * // Create many ImageUploads
+     * const imageUpload = await prisma.imageUpload.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ImageUploads and only return the `id`
+     * const imageUploadWithIdOnly = await prisma.imageUpload.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ImageUploadCreateManyAndReturnArgs>(args?: SelectSubset<T, ImageUploadCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImageUploadPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ImageUpload.
+     * @param {ImageUploadDeleteArgs} args - Arguments to delete one ImageUpload.
+     * @example
+     * // Delete one ImageUpload
+     * const ImageUpload = await prisma.imageUpload.delete({
+     *   where: {
+     *     // ... filter to delete one ImageUpload
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ImageUploadDeleteArgs>(args: SelectSubset<T, ImageUploadDeleteArgs<ExtArgs>>): Prisma__ImageUploadClient<$Result.GetResult<Prisma.$ImageUploadPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ImageUpload.
+     * @param {ImageUploadUpdateArgs} args - Arguments to update one ImageUpload.
+     * @example
+     * // Update one ImageUpload
+     * const imageUpload = await prisma.imageUpload.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ImageUploadUpdateArgs>(args: SelectSubset<T, ImageUploadUpdateArgs<ExtArgs>>): Prisma__ImageUploadClient<$Result.GetResult<Prisma.$ImageUploadPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ImageUploads.
+     * @param {ImageUploadDeleteManyArgs} args - Arguments to filter ImageUploads to delete.
+     * @example
+     * // Delete a few ImageUploads
+     * const { count } = await prisma.imageUpload.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ImageUploadDeleteManyArgs>(args?: SelectSubset<T, ImageUploadDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ImageUploads.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ImageUploadUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ImageUploads
+     * const imageUpload = await prisma.imageUpload.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ImageUploadUpdateManyArgs>(args: SelectSubset<T, ImageUploadUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ImageUploads and returns the data updated in the database.
+     * @param {ImageUploadUpdateManyAndReturnArgs} args - Arguments to update many ImageUploads.
+     * @example
+     * // Update many ImageUploads
+     * const imageUpload = await prisma.imageUpload.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ImageUploads and only return the `id`
+     * const imageUploadWithIdOnly = await prisma.imageUpload.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ImageUploadUpdateManyAndReturnArgs>(args: SelectSubset<T, ImageUploadUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImageUploadPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ImageUpload.
+     * @param {ImageUploadUpsertArgs} args - Arguments to update or create a ImageUpload.
+     * @example
+     * // Update or create a ImageUpload
+     * const imageUpload = await prisma.imageUpload.upsert({
+     *   create: {
+     *     // ... data to create a ImageUpload
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ImageUpload we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ImageUploadUpsertArgs>(args: SelectSubset<T, ImageUploadUpsertArgs<ExtArgs>>): Prisma__ImageUploadClient<$Result.GetResult<Prisma.$ImageUploadPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ImageUploads.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ImageUploadCountArgs} args - Arguments to filter ImageUploads to count.
+     * @example
+     * // Count the number of ImageUploads
+     * const count = await prisma.imageUpload.count({
+     *   where: {
+     *     // ... the filter for the ImageUploads we want to count
+     *   }
+     * })
+    **/
+    count<T extends ImageUploadCountArgs>(
+      args?: Subset<T, ImageUploadCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ImageUploadCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ImageUpload.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ImageUploadAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ImageUploadAggregateArgs>(args: Subset<T, ImageUploadAggregateArgs>): Prisma.PrismaPromise<GetImageUploadAggregateType<T>>
+
+    /**
+     * Group by ImageUpload.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ImageUploadGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ImageUploadGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ImageUploadGroupByArgs['orderBy'] }
+        : { orderBy?: ImageUploadGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ImageUploadGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetImageUploadGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ImageUpload model
+   */
+  readonly fields: ImageUploadFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ImageUpload.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ImageUploadClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ImageUpload model
+   */
+  interface ImageUploadFieldRefs {
+    readonly id: FieldRef<"ImageUpload", 'Int'>
+    readonly createdAt: FieldRef<"ImageUpload", 'DateTime'>
+    readonly userEmail: FieldRef<"ImageUpload", 'String'>
+    readonly invoiceId: FieldRef<"ImageUpload", 'String'>
+    readonly url: FieldRef<"ImageUpload", 'String'>
+    readonly fileId: FieldRef<"ImageUpload", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ImageUpload findUnique
+   */
+  export type ImageUploadFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ImageUpload
+     */
+    select?: ImageUploadSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ImageUpload
+     */
+    omit?: ImageUploadOmit<ExtArgs> | null
+    /**
+     * Filter, which ImageUpload to fetch.
+     */
+    where: ImageUploadWhereUniqueInput
+  }
+
+  /**
+   * ImageUpload findUniqueOrThrow
+   */
+  export type ImageUploadFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ImageUpload
+     */
+    select?: ImageUploadSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ImageUpload
+     */
+    omit?: ImageUploadOmit<ExtArgs> | null
+    /**
+     * Filter, which ImageUpload to fetch.
+     */
+    where: ImageUploadWhereUniqueInput
+  }
+
+  /**
+   * ImageUpload findFirst
+   */
+  export type ImageUploadFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ImageUpload
+     */
+    select?: ImageUploadSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ImageUpload
+     */
+    omit?: ImageUploadOmit<ExtArgs> | null
+    /**
+     * Filter, which ImageUpload to fetch.
+     */
+    where?: ImageUploadWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ImageUploads to fetch.
+     */
+    orderBy?: ImageUploadOrderByWithRelationInput | ImageUploadOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ImageUploads.
+     */
+    cursor?: ImageUploadWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ImageUploads from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ImageUploads.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ImageUploads.
+     */
+    distinct?: ImageUploadScalarFieldEnum | ImageUploadScalarFieldEnum[]
+  }
+
+  /**
+   * ImageUpload findFirstOrThrow
+   */
+  export type ImageUploadFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ImageUpload
+     */
+    select?: ImageUploadSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ImageUpload
+     */
+    omit?: ImageUploadOmit<ExtArgs> | null
+    /**
+     * Filter, which ImageUpload to fetch.
+     */
+    where?: ImageUploadWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ImageUploads to fetch.
+     */
+    orderBy?: ImageUploadOrderByWithRelationInput | ImageUploadOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ImageUploads.
+     */
+    cursor?: ImageUploadWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ImageUploads from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ImageUploads.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ImageUploads.
+     */
+    distinct?: ImageUploadScalarFieldEnum | ImageUploadScalarFieldEnum[]
+  }
+
+  /**
+   * ImageUpload findMany
+   */
+  export type ImageUploadFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ImageUpload
+     */
+    select?: ImageUploadSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ImageUpload
+     */
+    omit?: ImageUploadOmit<ExtArgs> | null
+    /**
+     * Filter, which ImageUploads to fetch.
+     */
+    where?: ImageUploadWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ImageUploads to fetch.
+     */
+    orderBy?: ImageUploadOrderByWithRelationInput | ImageUploadOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ImageUploads.
+     */
+    cursor?: ImageUploadWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ImageUploads from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ImageUploads.
+     */
+    skip?: number
+    distinct?: ImageUploadScalarFieldEnum | ImageUploadScalarFieldEnum[]
+  }
+
+  /**
+   * ImageUpload create
+   */
+  export type ImageUploadCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ImageUpload
+     */
+    select?: ImageUploadSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ImageUpload
+     */
+    omit?: ImageUploadOmit<ExtArgs> | null
+    /**
+     * The data needed to create a ImageUpload.
+     */
+    data: XOR<ImageUploadCreateInput, ImageUploadUncheckedCreateInput>
+  }
+
+  /**
+   * ImageUpload createMany
+   */
+  export type ImageUploadCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ImageUploads.
+     */
+    data: ImageUploadCreateManyInput | ImageUploadCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ImageUpload createManyAndReturn
+   */
+  export type ImageUploadCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ImageUpload
+     */
+    select?: ImageUploadSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ImageUpload
+     */
+    omit?: ImageUploadOmit<ExtArgs> | null
+    /**
+     * The data used to create many ImageUploads.
+     */
+    data: ImageUploadCreateManyInput | ImageUploadCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ImageUpload update
+   */
+  export type ImageUploadUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ImageUpload
+     */
+    select?: ImageUploadSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ImageUpload
+     */
+    omit?: ImageUploadOmit<ExtArgs> | null
+    /**
+     * The data needed to update a ImageUpload.
+     */
+    data: XOR<ImageUploadUpdateInput, ImageUploadUncheckedUpdateInput>
+    /**
+     * Choose, which ImageUpload to update.
+     */
+    where: ImageUploadWhereUniqueInput
+  }
+
+  /**
+   * ImageUpload updateMany
+   */
+  export type ImageUploadUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ImageUploads.
+     */
+    data: XOR<ImageUploadUpdateManyMutationInput, ImageUploadUncheckedUpdateManyInput>
+    /**
+     * Filter which ImageUploads to update
+     */
+    where?: ImageUploadWhereInput
+    /**
+     * Limit how many ImageUploads to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ImageUpload updateManyAndReturn
+   */
+  export type ImageUploadUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ImageUpload
+     */
+    select?: ImageUploadSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ImageUpload
+     */
+    omit?: ImageUploadOmit<ExtArgs> | null
+    /**
+     * The data used to update ImageUploads.
+     */
+    data: XOR<ImageUploadUpdateManyMutationInput, ImageUploadUncheckedUpdateManyInput>
+    /**
+     * Filter which ImageUploads to update
+     */
+    where?: ImageUploadWhereInput
+    /**
+     * Limit how many ImageUploads to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ImageUpload upsert
+   */
+  export type ImageUploadUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ImageUpload
+     */
+    select?: ImageUploadSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ImageUpload
+     */
+    omit?: ImageUploadOmit<ExtArgs> | null
+    /**
+     * The filter to search for the ImageUpload to update in case it exists.
+     */
+    where: ImageUploadWhereUniqueInput
+    /**
+     * In case the ImageUpload found by the `where` argument doesn't exist, create a new ImageUpload with this data.
+     */
+    create: XOR<ImageUploadCreateInput, ImageUploadUncheckedCreateInput>
+    /**
+     * In case the ImageUpload was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ImageUploadUpdateInput, ImageUploadUncheckedUpdateInput>
+  }
+
+  /**
+   * ImageUpload delete
+   */
+  export type ImageUploadDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ImageUpload
+     */
+    select?: ImageUploadSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ImageUpload
+     */
+    omit?: ImageUploadOmit<ExtArgs> | null
+    /**
+     * Filter which ImageUpload to delete.
+     */
+    where: ImageUploadWhereUniqueInput
+  }
+
+  /**
+   * ImageUpload deleteMany
+   */
+  export type ImageUploadDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ImageUploads to delete
+     */
+    where?: ImageUploadWhereInput
+    /**
+     * Limit how many ImageUploads to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ImageUpload without action
+   */
+  export type ImageUploadDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ImageUpload
+     */
+    select?: ImageUploadSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ImageUpload
+     */
+    omit?: ImageUploadOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -3296,6 +4469,7 @@ export namespace Prisma {
   export const InvoiceScalarFieldEnum: {
     id: 'id',
     createdAt: 'createdAt',
+    userEmail: 'userEmail',
     selectedCurrency: 'selectedCurrency',
     invoiceId: 'invoiceId',
     invoiceTitle: 'invoiceTitle',
@@ -3314,14 +4488,29 @@ export namespace Prisma {
     date: 'date',
     terms: 'terms',
     lineItems: 'lineItems',
+    taxData: 'taxData',
+    discountData: 'discountData',
     subtotal: 'subtotal',
     tax: 'tax',
     total: 'total',
     balance: 'balance',
-    signatureUrl: 'signatureUrl'
+    signatureUrl: 'signatureUrl',
+    templateColour: 'templateColour'
   };
 
   export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
+
+
+  export const ImageUploadScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    userEmail: 'userEmail',
+    invoiceId: 'invoiceId',
+    url: 'url',
+    fileId: 'fileId'
+  };
+
+  export type ImageUploadScalarFieldEnum = (typeof ImageUploadScalarFieldEnum)[keyof typeof ImageUploadScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3332,12 +4521,28 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   export const NullsOrder: {
@@ -3396,6 +4601,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
    * Reference to a field of type 'Json[]'
    */
   export type ListJsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json[]'>
@@ -3403,9 +4622,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Json'
+   * Reference to a field of type 'Decimal'
    */
-  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+  /**
+   * Reference to a field of type 'Decimal[]'
+   */
+  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
     
 
 
@@ -3481,7 +4707,8 @@ export namespace Prisma {
     NOT?: InvoiceWhereInput | InvoiceWhereInput[]
     id?: IntFilter<"Invoice"> | number
     createdAt?: DateTimeFilter<"Invoice"> | Date | string
-    selectedCurrency?: StringFilter<"Invoice"> | string
+    userEmail?: StringFilter<"Invoice"> | string
+    selectedCurrency?: JsonFilter<"Invoice">
     invoiceId?: StringFilter<"Invoice"> | string
     invoiceTitle?: StringFilter<"Invoice"> | string
     fromName?: StringFilter<"Invoice"> | string
@@ -3499,16 +4726,20 @@ export namespace Prisma {
     date?: StringFilter<"Invoice"> | string
     terms?: StringFilter<"Invoice"> | string
     lineItems?: JsonNullableListFilter<"Invoice">
-    subtotal?: IntFilter<"Invoice"> | number
-    tax?: IntFilter<"Invoice"> | number
-    total?: IntFilter<"Invoice"> | number
-    balance?: IntFilter<"Invoice"> | number
+    taxData?: JsonFilter<"Invoice">
+    discountData?: JsonFilter<"Invoice">
+    subtotal?: DecimalFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
+    tax?: DecimalFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
+    total?: DecimalFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
+    balance?: DecimalFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
     signatureUrl?: StringFilter<"Invoice"> | string
+    templateColour?: StringFilter<"Invoice"> | string
   }
 
   export type InvoiceOrderByWithRelationInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    userEmail?: SortOrder
     selectedCurrency?: SortOrder
     invoiceId?: SortOrder
     invoiceTitle?: SortOrder
@@ -3527,11 +4758,14 @@ export namespace Prisma {
     date?: SortOrder
     terms?: SortOrder
     lineItems?: SortOrder
+    taxData?: SortOrder
+    discountData?: SortOrder
     subtotal?: SortOrder
     tax?: SortOrder
     total?: SortOrder
     balance?: SortOrder
     signatureUrl?: SortOrder
+    templateColour?: SortOrder
   }
 
   export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
@@ -3541,7 +4775,8 @@ export namespace Prisma {
     OR?: InvoiceWhereInput[]
     NOT?: InvoiceWhereInput | InvoiceWhereInput[]
     createdAt?: DateTimeFilter<"Invoice"> | Date | string
-    selectedCurrency?: StringFilter<"Invoice"> | string
+    userEmail?: StringFilter<"Invoice"> | string
+    selectedCurrency?: JsonFilter<"Invoice">
     invoiceTitle?: StringFilter<"Invoice"> | string
     fromName?: StringFilter<"Invoice"> | string
     fromEmail?: StringFilter<"Invoice"> | string
@@ -3558,16 +4793,20 @@ export namespace Prisma {
     date?: StringFilter<"Invoice"> | string
     terms?: StringFilter<"Invoice"> | string
     lineItems?: JsonNullableListFilter<"Invoice">
-    subtotal?: IntFilter<"Invoice"> | number
-    tax?: IntFilter<"Invoice"> | number
-    total?: IntFilter<"Invoice"> | number
-    balance?: IntFilter<"Invoice"> | number
+    taxData?: JsonFilter<"Invoice">
+    discountData?: JsonFilter<"Invoice">
+    subtotal?: DecimalFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
+    tax?: DecimalFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
+    total?: DecimalFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
+    balance?: DecimalFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
     signatureUrl?: StringFilter<"Invoice"> | string
+    templateColour?: StringFilter<"Invoice"> | string
   }, "id" | "invoiceId">
 
   export type InvoiceOrderByWithAggregationInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    userEmail?: SortOrder
     selectedCurrency?: SortOrder
     invoiceId?: SortOrder
     invoiceTitle?: SortOrder
@@ -3586,11 +4825,14 @@ export namespace Prisma {
     date?: SortOrder
     terms?: SortOrder
     lineItems?: SortOrder
+    taxData?: SortOrder
+    discountData?: SortOrder
     subtotal?: SortOrder
     tax?: SortOrder
     total?: SortOrder
     balance?: SortOrder
     signatureUrl?: SortOrder
+    templateColour?: SortOrder
     _count?: InvoiceCountOrderByAggregateInput
     _avg?: InvoiceAvgOrderByAggregateInput
     _max?: InvoiceMaxOrderByAggregateInput
@@ -3604,7 +4846,8 @@ export namespace Prisma {
     NOT?: InvoiceScalarWhereWithAggregatesInput | InvoiceScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Invoice"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Invoice"> | Date | string
-    selectedCurrency?: StringWithAggregatesFilter<"Invoice"> | string
+    userEmail?: StringWithAggregatesFilter<"Invoice"> | string
+    selectedCurrency?: JsonWithAggregatesFilter<"Invoice">
     invoiceId?: StringWithAggregatesFilter<"Invoice"> | string
     invoiceTitle?: StringWithAggregatesFilter<"Invoice"> | string
     fromName?: StringWithAggregatesFilter<"Invoice"> | string
@@ -3622,11 +4865,73 @@ export namespace Prisma {
     date?: StringWithAggregatesFilter<"Invoice"> | string
     terms?: StringWithAggregatesFilter<"Invoice"> | string
     lineItems?: JsonNullableListFilter<"Invoice">
-    subtotal?: IntWithAggregatesFilter<"Invoice"> | number
-    tax?: IntWithAggregatesFilter<"Invoice"> | number
-    total?: IntWithAggregatesFilter<"Invoice"> | number
-    balance?: IntWithAggregatesFilter<"Invoice"> | number
+    taxData?: JsonWithAggregatesFilter<"Invoice">
+    discountData?: JsonWithAggregatesFilter<"Invoice">
+    subtotal?: DecimalWithAggregatesFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
+    tax?: DecimalWithAggregatesFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
+    total?: DecimalWithAggregatesFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
+    balance?: DecimalWithAggregatesFilter<"Invoice"> | Decimal | DecimalJsLike | number | string
     signatureUrl?: StringWithAggregatesFilter<"Invoice"> | string
+    templateColour?: StringWithAggregatesFilter<"Invoice"> | string
+  }
+
+  export type ImageUploadWhereInput = {
+    AND?: ImageUploadWhereInput | ImageUploadWhereInput[]
+    OR?: ImageUploadWhereInput[]
+    NOT?: ImageUploadWhereInput | ImageUploadWhereInput[]
+    id?: IntFilter<"ImageUpload"> | number
+    createdAt?: DateTimeFilter<"ImageUpload"> | Date | string
+    userEmail?: StringFilter<"ImageUpload"> | string
+    invoiceId?: StringFilter<"ImageUpload"> | string
+    url?: StringFilter<"ImageUpload"> | string
+    fileId?: StringFilter<"ImageUpload"> | string
+  }
+
+  export type ImageUploadOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    userEmail?: SortOrder
+    invoiceId?: SortOrder
+    url?: SortOrder
+    fileId?: SortOrder
+  }
+
+  export type ImageUploadWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    invoiceId?: string
+    url?: string
+    fileId?: string
+    AND?: ImageUploadWhereInput | ImageUploadWhereInput[]
+    OR?: ImageUploadWhereInput[]
+    NOT?: ImageUploadWhereInput | ImageUploadWhereInput[]
+    createdAt?: DateTimeFilter<"ImageUpload"> | Date | string
+    userEmail?: StringFilter<"ImageUpload"> | string
+  }, "id" | "invoiceId" | "url" | "fileId">
+
+  export type ImageUploadOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    userEmail?: SortOrder
+    invoiceId?: SortOrder
+    url?: SortOrder
+    fileId?: SortOrder
+    _count?: ImageUploadCountOrderByAggregateInput
+    _avg?: ImageUploadAvgOrderByAggregateInput
+    _max?: ImageUploadMaxOrderByAggregateInput
+    _min?: ImageUploadMinOrderByAggregateInput
+    _sum?: ImageUploadSumOrderByAggregateInput
+  }
+
+  export type ImageUploadScalarWhereWithAggregatesInput = {
+    AND?: ImageUploadScalarWhereWithAggregatesInput | ImageUploadScalarWhereWithAggregatesInput[]
+    OR?: ImageUploadScalarWhereWithAggregatesInput[]
+    NOT?: ImageUploadScalarWhereWithAggregatesInput | ImageUploadScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ImageUpload"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"ImageUpload"> | Date | string
+    userEmail?: StringWithAggregatesFilter<"ImageUpload"> | string
+    invoiceId?: StringWithAggregatesFilter<"ImageUpload"> | string
+    url?: StringWithAggregatesFilter<"ImageUpload"> | string
+    fileId?: StringWithAggregatesFilter<"ImageUpload"> | string
   }
 
   export type UserCreateInput = {
@@ -3677,7 +4982,8 @@ export namespace Prisma {
 
   export type InvoiceCreateInput = {
     createdAt?: Date | string
-    selectedCurrency: string
+    userEmail: string
+    selectedCurrency: JsonNullValueInput | InputJsonValue
     invoiceId: string
     invoiceTitle: string
     fromName: string
@@ -3695,17 +5001,21 @@ export namespace Prisma {
     date: string
     terms: string
     lineItems?: InvoiceCreatelineItemsInput | InputJsonValue[]
-    subtotal: number
-    tax: number
-    total: number
-    balance: number
+    taxData: JsonNullValueInput | InputJsonValue
+    discountData: JsonNullValueInput | InputJsonValue
+    subtotal: Decimal | DecimalJsLike | number | string
+    tax: Decimal | DecimalJsLike | number | string
+    total: Decimal | DecimalJsLike | number | string
+    balance: Decimal | DecimalJsLike | number | string
     signatureUrl: string
+    templateColour: string
   }
 
   export type InvoiceUncheckedCreateInput = {
     id?: number
     createdAt?: Date | string
-    selectedCurrency: string
+    userEmail: string
+    selectedCurrency: JsonNullValueInput | InputJsonValue
     invoiceId: string
     invoiceTitle: string
     fromName: string
@@ -3723,16 +5033,20 @@ export namespace Prisma {
     date: string
     terms: string
     lineItems?: InvoiceCreatelineItemsInput | InputJsonValue[]
-    subtotal: number
-    tax: number
-    total: number
-    balance: number
+    taxData: JsonNullValueInput | InputJsonValue
+    discountData: JsonNullValueInput | InputJsonValue
+    subtotal: Decimal | DecimalJsLike | number | string
+    tax: Decimal | DecimalJsLike | number | string
+    total: Decimal | DecimalJsLike | number | string
+    balance: Decimal | DecimalJsLike | number | string
     signatureUrl: string
+    templateColour: string
   }
 
   export type InvoiceUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    selectedCurrency?: StringFieldUpdateOperationsInput | string
+    userEmail?: StringFieldUpdateOperationsInput | string
+    selectedCurrency?: JsonNullValueInput | InputJsonValue
     invoiceId?: StringFieldUpdateOperationsInput | string
     invoiceTitle?: StringFieldUpdateOperationsInput | string
     fromName?: StringFieldUpdateOperationsInput | string
@@ -3750,17 +5064,21 @@ export namespace Prisma {
     date?: StringFieldUpdateOperationsInput | string
     terms?: StringFieldUpdateOperationsInput | string
     lineItems?: InvoiceUpdatelineItemsInput | InputJsonValue[]
-    subtotal?: IntFieldUpdateOperationsInput | number
-    tax?: IntFieldUpdateOperationsInput | number
-    total?: IntFieldUpdateOperationsInput | number
-    balance?: IntFieldUpdateOperationsInput | number
+    taxData?: JsonNullValueInput | InputJsonValue
+    discountData?: JsonNullValueInput | InputJsonValue
+    subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    tax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     signatureUrl?: StringFieldUpdateOperationsInput | string
+    templateColour?: StringFieldUpdateOperationsInput | string
   }
 
   export type InvoiceUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    selectedCurrency?: StringFieldUpdateOperationsInput | string
+    userEmail?: StringFieldUpdateOperationsInput | string
+    selectedCurrency?: JsonNullValueInput | InputJsonValue
     invoiceId?: StringFieldUpdateOperationsInput | string
     invoiceTitle?: StringFieldUpdateOperationsInput | string
     fromName?: StringFieldUpdateOperationsInput | string
@@ -3778,17 +5096,21 @@ export namespace Prisma {
     date?: StringFieldUpdateOperationsInput | string
     terms?: StringFieldUpdateOperationsInput | string
     lineItems?: InvoiceUpdatelineItemsInput | InputJsonValue[]
-    subtotal?: IntFieldUpdateOperationsInput | number
-    tax?: IntFieldUpdateOperationsInput | number
-    total?: IntFieldUpdateOperationsInput | number
-    balance?: IntFieldUpdateOperationsInput | number
+    taxData?: JsonNullValueInput | InputJsonValue
+    discountData?: JsonNullValueInput | InputJsonValue
+    subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    tax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     signatureUrl?: StringFieldUpdateOperationsInput | string
+    templateColour?: StringFieldUpdateOperationsInput | string
   }
 
   export type InvoiceCreateManyInput = {
     id?: number
     createdAt?: Date | string
-    selectedCurrency: string
+    userEmail: string
+    selectedCurrency: JsonNullValueInput | InputJsonValue
     invoiceId: string
     invoiceTitle: string
     fromName: string
@@ -3806,16 +5128,20 @@ export namespace Prisma {
     date: string
     terms: string
     lineItems?: InvoiceCreatelineItemsInput | InputJsonValue[]
-    subtotal: number
-    tax: number
-    total: number
-    balance: number
+    taxData: JsonNullValueInput | InputJsonValue
+    discountData: JsonNullValueInput | InputJsonValue
+    subtotal: Decimal | DecimalJsLike | number | string
+    tax: Decimal | DecimalJsLike | number | string
+    total: Decimal | DecimalJsLike | number | string
+    balance: Decimal | DecimalJsLike | number | string
     signatureUrl: string
+    templateColour: string
   }
 
   export type InvoiceUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    selectedCurrency?: StringFieldUpdateOperationsInput | string
+    userEmail?: StringFieldUpdateOperationsInput | string
+    selectedCurrency?: JsonNullValueInput | InputJsonValue
     invoiceId?: StringFieldUpdateOperationsInput | string
     invoiceTitle?: StringFieldUpdateOperationsInput | string
     fromName?: StringFieldUpdateOperationsInput | string
@@ -3833,17 +5159,21 @@ export namespace Prisma {
     date?: StringFieldUpdateOperationsInput | string
     terms?: StringFieldUpdateOperationsInput | string
     lineItems?: InvoiceUpdatelineItemsInput | InputJsonValue[]
-    subtotal?: IntFieldUpdateOperationsInput | number
-    tax?: IntFieldUpdateOperationsInput | number
-    total?: IntFieldUpdateOperationsInput | number
-    balance?: IntFieldUpdateOperationsInput | number
+    taxData?: JsonNullValueInput | InputJsonValue
+    discountData?: JsonNullValueInput | InputJsonValue
+    subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    tax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     signatureUrl?: StringFieldUpdateOperationsInput | string
+    templateColour?: StringFieldUpdateOperationsInput | string
   }
 
   export type InvoiceUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    selectedCurrency?: StringFieldUpdateOperationsInput | string
+    userEmail?: StringFieldUpdateOperationsInput | string
+    selectedCurrency?: JsonNullValueInput | InputJsonValue
     invoiceId?: StringFieldUpdateOperationsInput | string
     invoiceTitle?: StringFieldUpdateOperationsInput | string
     fromName?: StringFieldUpdateOperationsInput | string
@@ -3861,11 +5191,74 @@ export namespace Prisma {
     date?: StringFieldUpdateOperationsInput | string
     terms?: StringFieldUpdateOperationsInput | string
     lineItems?: InvoiceUpdatelineItemsInput | InputJsonValue[]
-    subtotal?: IntFieldUpdateOperationsInput | number
-    tax?: IntFieldUpdateOperationsInput | number
-    total?: IntFieldUpdateOperationsInput | number
-    balance?: IntFieldUpdateOperationsInput | number
+    taxData?: JsonNullValueInput | InputJsonValue
+    discountData?: JsonNullValueInput | InputJsonValue
+    subtotal?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    tax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     signatureUrl?: StringFieldUpdateOperationsInput | string
+    templateColour?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ImageUploadCreateInput = {
+    createdAt?: Date | string
+    userEmail: string
+    invoiceId: string
+    url: string
+    fileId: string
+  }
+
+  export type ImageUploadUncheckedCreateInput = {
+    id?: number
+    createdAt?: Date | string
+    userEmail: string
+    invoiceId: string
+    url: string
+    fileId: string
+  }
+
+  export type ImageUploadUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userEmail?: StringFieldUpdateOperationsInput | string
+    invoiceId?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    fileId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ImageUploadUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userEmail?: StringFieldUpdateOperationsInput | string
+    invoiceId?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    fileId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ImageUploadCreateManyInput = {
+    id?: number
+    createdAt?: Date | string
+    userEmail: string
+    invoiceId: string
+    url: string
+    fileId: string
+  }
+
+  export type ImageUploadUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userEmail?: StringFieldUpdateOperationsInput | string
+    invoiceId?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    fileId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ImageUploadUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userEmail?: StringFieldUpdateOperationsInput | string
+    invoiceId?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    fileId?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -3981,6 +5374,29 @@ export namespace Prisma {
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
   }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
@@ -4011,6 +5427,17 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
+  export type DecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -4019,6 +5446,7 @@ export namespace Prisma {
   export type InvoiceCountOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    userEmail?: SortOrder
     selectedCurrency?: SortOrder
     invoiceId?: SortOrder
     invoiceTitle?: SortOrder
@@ -4037,11 +5465,14 @@ export namespace Prisma {
     date?: SortOrder
     terms?: SortOrder
     lineItems?: SortOrder
+    taxData?: SortOrder
+    discountData?: SortOrder
     subtotal?: SortOrder
     tax?: SortOrder
     total?: SortOrder
     balance?: SortOrder
     signatureUrl?: SortOrder
+    templateColour?: SortOrder
   }
 
   export type InvoiceAvgOrderByAggregateInput = {
@@ -4055,7 +5486,7 @@ export namespace Prisma {
   export type InvoiceMaxOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
-    selectedCurrency?: SortOrder
+    userEmail?: SortOrder
     invoiceId?: SortOrder
     invoiceTitle?: SortOrder
     fromName?: SortOrder
@@ -4077,12 +5508,13 @@ export namespace Prisma {
     total?: SortOrder
     balance?: SortOrder
     signatureUrl?: SortOrder
+    templateColour?: SortOrder
   }
 
   export type InvoiceMinOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
-    selectedCurrency?: SortOrder
+    userEmail?: SortOrder
     invoiceId?: SortOrder
     invoiceTitle?: SortOrder
     fromName?: SortOrder
@@ -4104,6 +5536,7 @@ export namespace Prisma {
     total?: SortOrder
     balance?: SortOrder
     signatureUrl?: SortOrder
+    templateColour?: SortOrder
   }
 
   export type InvoiceSumOrderByAggregateInput = {
@@ -4112,6 +5545,32 @@ export namespace Prisma {
     tax?: SortOrder
     total?: SortOrder
     balance?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -4130,6 +5589,57 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type ImageUploadCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    userEmail?: SortOrder
+    invoiceId?: SortOrder
+    url?: SortOrder
+    fileId?: SortOrder
+  }
+
+  export type ImageUploadAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type ImageUploadMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    userEmail?: SortOrder
+    invoiceId?: SortOrder
+    url?: SortOrder
+    fileId?: SortOrder
+  }
+
+  export type ImageUploadMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    userEmail?: SortOrder
+    invoiceId?: SortOrder
+    url?: SortOrder
+    fileId?: SortOrder
+  }
+
+  export type ImageUploadSumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -4159,6 +5669,14 @@ export namespace Prisma {
   export type InvoiceUpdatelineItemsInput = {
     set?: InputJsonValue[]
     push?: InputJsonValue | InputJsonValue[]
+  }
+
+  export type DecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -4269,6 +5787,40 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedDecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -4295,6 +5847,22 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
   }
 
 

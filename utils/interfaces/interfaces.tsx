@@ -1,4 +1,4 @@
-import { InvoiceTerms } from "@/utils/data"
+import { DiscountCategory, InvoiceTerms, TaxCategory } from "@/utils/data"
 import { ParamValue } from "next/dist/server/request/params"
 
 export type InvoiceData = {
@@ -33,4 +33,24 @@ export type LineItemType = {
     quantity: number,
     amount: number,
     tax: boolean
+}
+
+
+export interface TaxData {
+  type: TaxCategory, 
+  label: string, 
+  rate: number,
+  inclusive: boolean
+}
+
+export interface DiscountData {
+  type: DiscountCategory,
+  amount: number,
+  calculatedAmount: number
+}
+
+export interface UploadedImage { 
+    url: string, 
+    fileId: string, 
+    invoiceId: string
 }

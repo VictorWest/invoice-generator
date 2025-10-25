@@ -10,19 +10,6 @@ export type TaxCategory = typeof taxCategoryOptions[number]
 export const discountCategoryOptions = ["None", "Percent", "Flat Amount"] as const
 export type DiscountCategory = typeof discountCategoryOptions[number]
 
-export interface TaxData {
-  type: TaxCategory, 
-  label: string, 
-  rate: number,
-  inclusive: boolean
-}
-
-export interface DiscountData {
-  type: DiscountCategory,
-  amount: number,
-  calculatedAmount: number
-}
-
 export const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$/
 export const MOBILE_NUMBER_REGEX = /^(?:\+1\s?)?(?:\(?\d{3}\)?[\s.-]?)?\d{3}[\s.-]?\d{4}$/
 export const PASSWORD_REGEX = /^.{8,}$/

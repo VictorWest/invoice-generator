@@ -10,7 +10,7 @@ export default function ImageUpload() {
   const router = useRouter()
   const invoiceId = useSearchParams().get("invoice-id")
 
-  const { setUploadedImage } = UseInvoiceContext()
+  const { setUploadedImage, handleSaveImageToDB } = UseInvoiceContext()
 
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploadStatus, setUploadStatus] = useState(null);
@@ -85,17 +85,20 @@ export default function ImageUpload() {
     }
   };
 
-  const onSuccess = (res) => {
+  const onSuccess = async (res) => {
     setIsUploading(false);
     setUploadStatus('success');
     setUploadProgress(100);
 
-    setUploadedImage({
+    const data = {
       url: res.url,
       fileId: res.fileId,
       invoiceId: invoiceId
-    })
+    }
 
+    setUploadedImage(data)
+    await handleSaveImageToDB(data)
+    
     router.back()
   };
 

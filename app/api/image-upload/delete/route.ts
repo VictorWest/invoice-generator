@@ -1,4 +1,13 @@
+import { PrismaClient } from "@/generated/prisma";
 import { NextRequest, NextResponse } from "next/server";
+
+const prisma = new PrismaClient({
+  datasources: {
+    db: {
+      url: process.env.DATABASE_URL
+    }
+  }
+})
 
 export async function POST(req: NextRequest) {
   const { fileId } = await req.json();
@@ -16,6 +25,10 @@ export async function POST(req: NextRequest) {
       console.log(text)
       return NextResponse.json({text}, { status: deleteResponse.status })
     }
+
+    await prisma.imageUpload.delete({
+      where: { fileId }
+    })
 
     return NextResponse.json({ success: true }, { status: 200 })
   } catch (err) {

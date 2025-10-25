@@ -1,8 +1,7 @@
 "use client"
 import Input from "@/components/input";
-import { LineItemType } from "@/utils/interfaces/interfaces";
-import { currencies, discountCategoryOptions, DiscountData, EMAIL_REGEX, invoiceTermsOptions, MOBILE_NUMBER_REGEX, taxCategoryOptions } from "@/utils/data";
-import { ParamValue } from "next/dist/server/request/params";
+import { DiscountData, LineItemType } from "@/utils/interfaces/interfaces";
+import { currencies, discountCategoryOptions, EMAIL_REGEX, invoiceTermsOptions, MOBILE_NUMBER_REGEX, taxCategoryOptions } from "@/utils/data";
 import { useEffect, useState } from "react";
 import { FaImage, FaPlus } from "react-icons/fa6";
 import { IoIosCheckbox } from "react-icons/io";
@@ -45,13 +44,13 @@ export default function CreateInvoice(){
             setUploadedImage, 
             templateColour, 
             setTemplateColour,
-            handleSaveChangesToDB } = UseInvoiceContext()
+            handleSaveChangesToDB,
+            hasSavedDocument } = UseInvoiceContext()
 
     // UX state management
     const [ inputIsInvalid, setInputIsInvalid ] = useState({ fromEmail: false, fromPhone: false, fromBusiness: false, billToEmail: false, billToPhone: false, billToMobile: false, billToFax: false, invoiceNumber: false})
     const [ showSignaturePad, setShowSignaturePad ] = useState(false)
     const [ showCurrencyList, setShowCurrencyList ] = useState(false)
-    const [ hasSavedDocument, setHasSavedDocument ] = useState(false)
     
     useEffect(() => {
         setInvoiceData((prev: any) => ({...prev, id}))
@@ -201,10 +200,6 @@ export default function CreateInvoice(){
             console.log('Error deleting image:', err);
         }
     };
-
-    const handleContinueButton = () => {
-
-    }
 
     return (
         <>
@@ -414,9 +409,9 @@ export default function CreateInvoice(){
                         <div  onClick={handleSaveChangesToDB}>
                             <Button bgColour="#E8E9ED" title="Save Changes" className="border border-stone-300" />
                         </div>
-                        <div onClick={hasSavedDocument ? handleContinueButton : undefined} className={`text-white bg-black ${hasSavedDocument ? "hover:opacity-90 cursor-pointer" : "cursor-not-allowed"} border border-stone-300 px-5 py-3 text-sm rounded-full`}>
+                        {hasSavedDocument && <Link href={`/invoices/${id}/preview`} className={`text-white bg-black ${hasSavedDocument ? "hover:opacity-90 cursor-pointer" : "cursor-not-allowed"} border border-stone-300 px-5 py-3 text-sm rounded-full`}>
                             Preview Invoice
-                        </div>
+                        </Link>}
                     </div>                
                 </div>
                 <div className="w-1/4 space-y-10">

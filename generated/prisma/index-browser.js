@@ -130,6 +130,7 @@ exports.Prisma.UserScalarFieldEnum = {
 exports.Prisma.InvoiceScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
+  userEmail: 'userEmail',
   selectedCurrency: 'selectedCurrency',
   invoiceId: 'invoiceId',
   invoiceTitle: 'invoiceTitle',
@@ -148,11 +149,23 @@ exports.Prisma.InvoiceScalarFieldEnum = {
   date: 'date',
   terms: 'terms',
   lineItems: 'lineItems',
+  taxData: 'taxData',
+  discountData: 'discountData',
   subtotal: 'subtotal',
   tax: 'tax',
   total: 'total',
   balance: 'balance',
-  signatureUrl: 'signatureUrl'
+  signatureUrl: 'signatureUrl',
+  templateColour: 'templateColour'
+};
+
+exports.Prisma.ImageUploadScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  userEmail: 'userEmail',
+  invoiceId: 'invoiceId',
+  url: 'url',
+  fileId: 'fileId'
 };
 
 exports.Prisma.SortOrder = {
@@ -160,9 +173,19 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 
 exports.Prisma.NullsOrder = {
@@ -173,7 +196,8 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Invoice: 'Invoice'
+  Invoice: 'Invoice',
+  ImageUpload: 'ImageUpload'
 };
 
 /**
