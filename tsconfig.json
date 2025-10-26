@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/imagekit-upload/image-upload.jsx", "app/api/image-upload/route.ts", "app/api/image-upload/[id]/route.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/imagekit-upload/image-upload.jsx", "app/api/image-upload/[id]/route.ts", "app/api/image-upload/[id]/route.ts"],
   "exclude": ["node_modules"]
 }
