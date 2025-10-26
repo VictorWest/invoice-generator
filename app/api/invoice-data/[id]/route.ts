@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Params } from "../../image-upload/[id]/route";
 import { getServerSession } from "next-auth";
 import { PrismaClient } from "@/generated/prisma";
 
@@ -11,12 +10,11 @@ const prisma = new PrismaClient({
     }
 })
 
-export async function GET(request: NextRequest, context: { params: { id: string } }) {
-    const { params } = context
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     const session = await getServerSession()
     if (!session?.user?.email) return NextResponse.json({message: "User not found"}, { status: 400})
 
-    const { id } = params
+    const { id } = await params
 
     try {
         const response = await prisma.invoice.findFirst({

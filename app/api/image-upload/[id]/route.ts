@@ -11,19 +11,12 @@ const prisma = new PrismaClient({
     }
 })
 
-export type Params = {
-    params: {
-        id: string
-    }
-}
-
-export async function GET(request: NextRequest, context: { params: { id: string } }){
-    const { params } = context
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }){
     const session = await getServerSession()
     if (!session?.user?.email) return NextResponse.json({message: "User not found"}, { status: 400})
 
-    const { id } = params
-    
+    const { id } = await params
+
     try {
         const imageToDisplay = await prisma.imageUpload.findFirst({
             where: {
@@ -35,7 +28,7 @@ export async function GET(request: NextRequest, context: { params: { id: string 
         if (imageToDisplay){
             return NextResponse.json({ imageToDisplay }, { status: 200 })
         }
-        return NextResponse.json({message: "Image not found"}, { status: 400 })
+        return NextResponse.json({message: id}, { status: 400 })
     } catch (error) {
         console.log(error)
         return NextResponse.json({message: "There was an error"}, { status: 500 })
