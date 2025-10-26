@@ -21,7 +21,7 @@ export async function GET(request: NextRequest, { params }: Params){
     const session = await getServerSession()
     if (!session?.user?.email) return NextResponse.json({message: "User not found"}, { status: 400})
 
-    const { id } = await params
+    const { id } = params
     
     try {
         const imageToDisplay = await prisma.imageUpload.findFirst({
