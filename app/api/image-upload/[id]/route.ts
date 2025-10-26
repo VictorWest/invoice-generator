@@ -17,7 +17,8 @@ export type Params = {
     }
 }
 
-export async function GET(request: NextRequest, { params }: Params){
+export async function GET(request: NextRequest, context: { params: { id: string } }){
+    const { params } = context
     const session = await getServerSession()
     if (!session?.user?.email) return NextResponse.json({message: "User not found"}, { status: 400})
 
