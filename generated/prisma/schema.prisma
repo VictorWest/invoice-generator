@@ -18,7 +18,8 @@ model User {
 model Invoice {
   id               Int      @id @default(autoincrement())
   createdAt        DateTime @default(now())
-  selectedCurrency String
+  userEmail        String
+  selectedCurrency Json
   invoiceId        String   @unique
   invoiceTitle     String
   fromName         String
@@ -36,21 +37,21 @@ model Invoice {
   date             String
   terms            String
   lineItems        Json[]
-  subtotal         Int
-  tax              Int
-  total            Int
-  balance          Int
+  taxData          Json
+  discountData     Json
+  subtotal         Decimal
+  tax              Decimal
+  total            Decimal
+  balance          Decimal
   signatureUrl     String
+  templateColour   String
 }
 
-// model LineItems {
-//   id          Int       @id @default(autoincrement())
-//   index       Int
-//   description String
-//   rate        Int
-//   quantity    Int
-//   amount      Int
-//   tax         Boolean 
-//   invoice     Invoice? @relation(fields: [invoiceId], references: [invoiceId])
-//   invoiceId   String?
-// }
+model ImageUpload {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  userEmail String
+  invoiceId String   @unique
+  url       String   @unique
+  fileId    String   @unique
+}

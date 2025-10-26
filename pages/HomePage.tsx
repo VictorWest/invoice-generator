@@ -85,7 +85,7 @@ export default async function HomePage(){
                 </div>
                 <div className="bg-[#C6F121] text-black h-96 flex flex-col items-center justify-center gap-5 rounded-4xl mb-30">
                     <p className="text-3xl font-bold">Get started for free</p>
-                    <p className="text-xl">Send your first invoice right now (it's free!)</p>
+                    <p className="text-xl">Send your first invoice right now (it&apos;s free!)</p>
                     <div className="uppercase px-5 py-3 cursor-pointer hover:opacity-90 bg-white font-bold w-44 flex justify-center items-center rounded-md gap-2 hover:bg-black hover:text-white">
                         Get Started
                         <FaArrowTrendUp />

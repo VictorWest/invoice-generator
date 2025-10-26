@@ -141,8 +141,8 @@ export default function PreviewInvoice(){
                                 </div>
                             </div>
                             {lineItems?.map(item => (
-                                <div>
-                                    <div key={item.index} className="flex text-sm px-10 py-2">
+                                <div key={item.index}>
+                                    <div className="flex text-sm px-10 py-2">
                                         <p className="w-2/3">{item.description}</p>
                                         <div className="w-1/3 flex justify-between *:w-10">
                                             <p>{formatCurrency(item.rate, selectedCurrency?.symbol)}</p>
